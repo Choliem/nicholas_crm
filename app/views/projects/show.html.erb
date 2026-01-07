@@ -1,0 +1,69 @@
+<div class="max-w-4xl mx-auto py-10">
+  <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100">
+    <!-- Header -->
+    <div class="bg-[#0A2463] p-8 text-white flex justify-between items-center">
+      <div>
+        <div class="text-blue-300 text-xs font-bold uppercase tracking-widest mb-1">PROJECT DETAILS</div>
+        <h1 class="text-3xl font-mono font-bold tracking-tight"><%= @project.svc_code %></h1>
+      </div>
+      <div>
+        <% if @project.status == 'Approved' %>
+          <span class="bg-green-500 text-white px-4 py-2 rounded-lg font-bold shadow-lg uppercase tracking-wide text-sm">Approved</span>
+        <% else %>
+          <span class="bg-yellow-400 text-yellow-900 px-4 py-2 rounded-lg font-bold shadow-lg uppercase tracking-wide text-sm">Pending</span>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Customer Info -->
+      <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+        <h3 class="text-slate-400 text-xs font-black uppercase tracking-widest mb-4">CUSTOMER INFORMATION</h3>
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-2xl">👤</div>
+          <div>
+            <div class="font-bold text-slate-800 text-lg"><%= @project.lead.name %></div>
+            <div class="text-slate-500 text-sm"><%= @project.lead.email %></div>
+          </div>
+        </div>
+        <div class="text-sm text-slate-600">
+          <p class="mb-1"><span class="font-bold">Phone:</span> <%= @project.lead.phone %></p>
+          <p><span class="font-bold">Address:</span> <%= @project.lead.address %></p>
+        </div>
+      </div>
+
+      <!-- Service Info -->
+      <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+        <h3 class="text-slate-400 text-xs font-black uppercase tracking-widest mb-4">SERVICE SUBSCRIPTION</h3>
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-12 h-12 bg-cyan-100 rounded-full flex items-center justify-center text-2xl">📦</div>
+          <div>
+            <div class="font-bold text-slate-800 text-lg"><%= @project.product.name %></div>
+            <div class="text-emerald-600 font-bold"><%= number_to_currency(@project.product.price, unit: "Rp ", precision: 0) %> / month</div>
+          </div>
+        </div>
+        <div class="text-sm text-slate-500 italic">
+          <%= @project.product.description %>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Action Bar -->
+     <div class="bg-slate-50 px-8 py-6 border-t border-slate-100 flex justify-between items-center">
+        <%= link_to projects_path, class: "text-slate-500 font-bold text-sm hover:text-[#0A2463] flex items-center gap-2" do %>
+          <span>←</span> Back to Projects
+        <% end %>
+
+        <div class="flex gap-3">
+          <% if current_user.role == 'manager' && @project.status != 'Approved' %>
+              <%= button_to "✅ Approve Project", approve_project_path(@project), method: :patch, class: "bg-green-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-green-700 shadow-md transform hover:-translate-y-0.5 transition" %>
+          <% end %>
+          
+          <%= link_to "Edit Project", edit_project_path(@project), class: "bg-white border border-slate-300 text-slate-700 px-4 py-2 rounded-lg font-bold hover:bg-slate-50 transition" %>
+          
+          <%= button_to "Delete", @project, method: :delete, class: "text-red-500 font-bold px-4 py-2 hover:text-red-700 text-sm", data: { turbo_confirm: "Are you sure?" } %>
+        </div>
+     </div>
+
+  </div>
+</div>

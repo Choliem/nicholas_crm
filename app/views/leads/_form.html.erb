@@ -1,0 +1,64 @@
+<%= form_with(model: lead, class: "space-y-6") do |form| %>
+  <% if lead.errors.any? %>
+    <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-6 rounded-r-lg">
+      <div class="flex">
+        <div class="flex-shrink-0">
+          <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+          </svg>
+        </div>
+        <div class="ml-3">
+          <h3 class="text-sm font-medium text-red-800"><%= pluralize(lead.errors.count, "error") %> prohibited this lead from being saved:</h3>
+          <ul class="mt-2 text-sm text-red-700 list-disc list-inside">
+            <% lead.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <%= form.label :name, "Nama Lengkap / Perusahaan", class: "block text-sm font-semibold text-slate-700" %>
+      <%= form.text_field :name, class: "mt-1 block w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm", placeholder: "Contoh: PT. Maju Mundur" %>
+    </div>
+
+    <div>
+      <%= form.label :email, "Email Kontak", class: "block text-sm font-semibold text-slate-700" %>
+      <%= form.email_field :email, class: "mt-1 block w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm", placeholder: "email@example.com" %>
+    </div>
+
+    <div>
+      <%= form.label :phone, "Nomor Telepon", class: "block text-sm font-semibold text-slate-700" %>
+      <%= form.text_field :phone, class: "mt-1 block w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm", placeholder: "08123456789" %>
+    </div>
+
+    <div>
+      <%= form.label :status, "Status Prospek", class: "block text-sm font-semibold text-slate-700" %>
+      <%= form.select :status, ['New', 'Contacted', 'Qualified', 'Lost'], {}, class: "mt-1 block w-full px-4 py-2 border border-slate-300 rounded-lg bg-white shadow-sm" %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.label :address, "Alamat Lengkap", class: "block text-sm font-semibold text-slate-700" %>
+    <%= form.text_area :address, rows: 3, class: "mt-1 block w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm", placeholder: "Jl. Jendral Sudirman No. 1" %>
+  </div>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+    <div>
+      <%= form.label :lat, "Latitude (Lokasi)", class: "block text-sm font-semibold text-slate-700" %>
+      <%= form.text_field :lat, class: "mt-1 block w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm", placeholder: "-6.200000" %>
+    </div>
+    <div>
+      <%= form.label :long, "Longitude (Lokasi)", class: "block text-sm font-semibold text-slate-700" %>
+      <%= form.text_field :long, class: "mt-1 block w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm", placeholder: "106.800000" %>
+    </div>
+  </div>
+
+  <div class="flex items-center justify-end space-x-3 pt-6 border-t font-semibold">
+    <%= link_to "Batal", leads_path, class: "text-slate-600 hover:text-slate-800 px-4 py-2 rounded-lg hover:bg-slate-100 transition" %>
+    <%= form.submit "Simpan Data Lead", class: "px-6 py-2 bg-[#0A2463] text-white font-bold rounded-lg hover:bg-blue-800 shadow-md cursor-pointer transition" %>
+  </div>
+<% end %>

@@ -1,11 +1,14 @@
-<% content_for :title, "New product" %>
+<div class="max-w-2xl mx-auto py-10">
+  <div class="bg-white p-8 rounded-2xl shadow-xl border border-slate-100">
+    <div class="mb-8 border-b pb-4">
+      <h1 class="text-2xl font-bold text-[#0A2463]">Tambah Produk Baru</h1>
+      <p class="text-slate-500 text-sm">Masukkan detail layanan internet atau produk baru.</p>
+    </div>
 
-<h1>New product</h1>
+    <%= render "form", product: @product %>
 
-<%= render "form", product: @product %>
-
-<br>
-
-<div>
-  <%= link_to "Back to products", products_path %>
+    <div class="mt-6 pt-6 border-t flex justify-between items-center bg-slate-50 p-4 rounded-xl">
+       <%= link_to "← Kembali ke Daftar", products_path, class: "text-slate-500 font-semibold hover:text-[#0A2463] text-sm" %>
+    </div>
+  </div>
 </div>
