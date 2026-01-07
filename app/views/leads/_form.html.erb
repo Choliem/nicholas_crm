@@ -1,52 +1,33 @@
-<%= form_with(model: lead) do |form| %>
-  <% if lead.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(lead.errors.count, "error") %> prohibited this lead from being saved:</h2>
-
-      <ul>
-        <% lead.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<%= form_with(model: lead, class: "space-y-6") do |form| %>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <%= form.label :name, class: "block text-sm font-semibold text-slate-700" %>
+      <%= form.text_field :name, class: "mt-1 block w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm" %>
     </div>
-  <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <div>
+      <%= form.label :email, class: "block text-sm font-semibold text-slate-700" %>
+      <%= form.email_field :email, class: "mt-1 block w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm" %>
+    </div>
+
+    <div>
+      <%= form.label :phone, class: "block text-sm font-semibold text-slate-700" %>
+      <%= form.text_field :phone, class: "mt-1 block w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm" %>
+    </div>
+
+    <div>
+      <%= form.label :status, "Status Prospek", class: "block text-sm font-semibold text-slate-700" %>
+      <%= form.select :status, ['New', 'Contacted', 'Qualified', 'Lost'], {}, class: "mt-1 block w-full px-4 py-2 border border-slate-300 rounded-lg bg-white shadow-sm" %>
+    </div>
   </div>
 
   <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
+    <%= form.label :address, class: "block text-sm font-semibold text-slate-700" %>
+    <%= form.text_area :address, rows: 3, class: "mt-1 block w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm" %>
   </div>
 
-  <div>
-    <%= form.label :phone, style: "display: block" %>
-    <%= form.text_field :phone %>
-  </div>
-
-  <div>
-    <%= form.label :address, style: "display: block" %>
-    <%= form.textarea :address %>
-  </div>
-
-  <div>
-    <%= form.label :lat, style: "display: block" %>
-    <%= form.text_field :lat %>
-  </div>
-
-  <div>
-    <%= form.label :long, style: "display: block" %>
-    <%= form.text_field :long %>
-  </div>
-
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="flex items-center justify-end space-x-3 pt-6 border-t">
+    <%= link_to "Batal", leads_path, class: "text-slate-600 hover:text-slate-800 font-medium" %>
+    <%= form.submit "Simpan Data Lead", class: "px-6 py-2 bg-[#0A2463] text-white font-bold rounded-lg hover:bg-blue-800 shadow-md cursor-pointer transition" %>
   </div>
 <% end %>

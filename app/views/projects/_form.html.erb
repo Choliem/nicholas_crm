@@ -1,52 +1,15 @@
-<%= form_with(model: project) do |form| %>
-  <% if project.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
-
-      <ul>
-        <% project.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :lead_id, style: "display: block" %>
-    <%= form.text_field :lead_id %>
+<%= form_with(model: project, class: "contents") do |form| %>
+  <div class="my-5">
+    <%= form.label :lead_id, "Pilih Prospek (Lead)" %>
+    <%= form.collection_select :lead_id, Lead.all, :id, :name, { prompt: "Pilih Lead" }, class: "block w-full border border-gray-300 rounded-md p-2 mt-2" %>
   </div>
 
-  <div>
-    <%= form.label :product_id, style: "display: block" %>
-    <%= form.text_field :product_id %>
+  <div class="my-5">
+    <%= form.label :product_id, "Layanan (Product)" %>
+    <%= form.collection_select :product_id, Product.all, :id, :name, { prompt: "Pilih Produk" }, class: "block w-full border border-gray-300 rounded-md p-2 mt-2" %>
   </div>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div>
-    <%= form.label :svc_code, style: "display: block" %>
-    <%= form.text_field :svc_code %>
-  </div>
-
-  <div>
-    <%= form.label :approved_at, style: "display: block" %>
-    <%= form.datetime_field :approved_at %>
-  </div>
-
-  <div>
-    <%= form.label :deleted_at, style: "display: block" %>
-    <%= form.datetime_field :deleted_at %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="inline">
+    <%= form.submit "Simpan & Generate SVC Code", class: "rounded-lg py-3 px-5 bg-blue-900 text-white font-medium cursor-pointer" %>
   </div>
 <% end %>

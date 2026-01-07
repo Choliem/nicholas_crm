@@ -1,16 +1,25 @@
-<p style="color: green"><%= notice %></p>
-
-<% content_for :title, "Products" %>
-
-<h1>Products</h1>
-
-<div id="products">
-  <% @products.each do |product| %>
-    <%= render product %>
-    <p>
-      <%= link_to "Show this product", product %>
-    </p>
+<div class="flex justify-between items-center mb-8">
+  <h1 class="text-2xl font-bold text-slate-800 italic">Katalog Layanan PT. SMART</h1>
+  <% if current_user.role == 'manager' %>
+    <%= link_to "Tambah Layanan Baru", new_product_path, class: "bg-blue-600 text-white px-5 py-2 rounded-xl font-bold hover:bg-blue-700 transition" %>
   <% end %>
 </div>
 
-<%= link_to "New product", new_product_path %>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <% @products.each do |product| %>
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+      <div class="text-blue-600 font-bold text-xs uppercase tracking-widest mb-2">Layanan Internet</div>
+      <h2 class="text-xl font-bold text-slate-800 mb-2"><%= product.name %></h2>
+      <p class="text-slate-500 text-sm mb-4 h-12 overflow-hidden"><%= product.description %></p>
+      <div class="flex justify-between items-center pt-4 border-t border-slate-50">
+        <span class="text-lg font-extrabold text-slate-900">Rp <%= number_with_delimiter(product.price) %></span>
+        <div class="flex space-x-2">
+          <% if current_user.role == 'manager' %>
+            <%= link_to "Edit", edit_product_path(product), class: "text-slate-400 hover:text-blue-600 text-xs font-bold" %>
+            <%= button_to "Hapus", product, method: :delete, data: { confirm: "Yakin?" }, class: "text-red-400 hover:text-red-600 text-xs font-bold" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

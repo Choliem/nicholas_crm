@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
-  # Halaman utama: Daftar Prospek (Leads)
-  root "leads#index"
-
-  # Jalur untuk Autentikasi
-  get    "login",  to: "sessions#new"
-  post   "login",  to: "sessions#create"
+  root "static_pages#home"
+  
+  get "login", to: "sessions#new"
+  post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
+  
+get 'signup', to: 'users#new'
+post 'users', to: 'users#create'
+  resources :users, only: [:create]
 
-  # Resource standar yang sudah kita buat tadi
-  resources :projects
-  resources :products
   resources :leads
-  resources :users
+  resources :products
+  resources :projects do
+    member { patch :approve }
+  end
 end

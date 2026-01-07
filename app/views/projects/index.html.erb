@@ -1,16 +1,45 @@
-<p style="color: green"><%= notice %></p>
-
-<% content_for :title, "Projects" %>
-
-<h1>Projects</h1>
-
-<div id="projects">
-  <% @projects.each do |project| %>
-    <%= render project %>
-    <p>
-      <%= link_to "Show this project", project %>
-    </p>
-  <% end %>
+<div class="flex justify-between items-center mb-6">
+  <h1 class="text-2xl font-bold text-slate-800">Daftar Project & Approval</h1>
+  <%= link_to "Tambah Project Baru", new_project_path, class: "bg-[#0A2463] text-white px-4 py-2 rounded-lg font-bold hover:bg-blue-800 transition" %>
 </div>
 
-<%= link_to "New project", new_project_path %>
+<div class="overflow-x-auto">
+  <table class="min-w-full bg-white rounded-xl">
+    <thead>
+      <tr class="bg-slate-100 text-slate-600 text-sm uppercase">
+        <th class="py-4 px-6 text-left">SVC Code</th>
+        <th class="py-4 px-6 text-left">Customer / Lead</th>
+        <th class="py-4 px-6 text-left">Layanan</th>
+        <th class="py-4 px-6 text-center">Status</th>
+        <th class="py-4 px-6 text-center">Aksi</th>
+      </tr>
+    </thead>
+    <tbody class="text-slate-700">
+      <% @projects.each do |project| %>
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition">
+          <td class="py-4 px-6 font-mono text-blue-600 font-bold"><%= project.svc_code %></td>
+          <td class="py-4 px-6">
+            <div class="font-semibold"><%= project.lead.name %></div>
+            <div class="text-xs text-slate-400"><%= project.lead.email %></div>
+          </td>
+          <td class="py-4 px-6 text-sm"><%= project.product.name %></td>
+          <td class="py-4 px-6 text-center">
+            <% if project.status == 'Approved' %>
+              <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold italic">APPROVED</span>
+            <% else %>
+              <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-bold">PENDING</span>
+            <% end %>
+          </td>
+          <td class="py-4 px-6 text-center">
+            <div class="flex justify-center space-x-2">
+              <%= link_to "Detail", project, class: "text-blue-600 hover:underline" %>
+              <% if current_user.role == 'manager' && project.status != 'Approved' %>
+                <%= button_to "Approve", approve_project_path(project), method: :patch, class: "bg-green-600 text-white px-3 py-1 rounded text-xs hover:bg-green-700 transition" %>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
