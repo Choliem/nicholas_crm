@@ -5,9 +5,13 @@ one:
   email: MyString
   password_digest: MyString
   role: MyString
+  phone: MyString
+  verified_at: 2026-01-07 20:24:15
 
 two:
   name: MyString
   email: MyString
   password_digest: MyString
   role: MyString
+  phone: MyString
+  verified_at: 2026-01-07 20:24:15

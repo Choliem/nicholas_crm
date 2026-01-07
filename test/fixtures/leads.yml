@@ -5,6 +5,8 @@ one:
   email: MyString
   phone: MyString
   address: MyText
+  lat: 9.99
+  long: 9.99
   status: MyString
 
 two:
@@ -12,4 +14,6 @@ two:
   email: MyString
   phone: MyString
   address: MyText
+  lat: 9.99
+  long: 9.99
   status: MyString

@@ -22,13 +22,28 @@
   </div>
 
   <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div>
     <%= form.label :status, style: "display: block" %>
     <%= form.text_field :status %>
   </div>
 
   <div>
+    <%= form.label :svc_code, style: "display: block" %>
+    <%= form.text_field :svc_code %>
+  </div>
+
+  <div>
     <%= form.label :approved_at, style: "display: block" %>
     <%= form.datetime_field :approved_at %>
+  </div>
+
+  <div>
+    <%= form.label :deleted_at, style: "display: block" %>
+    <%= form.datetime_field :deleted_at %>
   </div>
 
   <div>

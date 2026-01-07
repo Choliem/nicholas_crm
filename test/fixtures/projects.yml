@@ -3,11 +3,17 @@
 one:
   lead: one
   product: one
+  user: one
   status: MyString
-  approved_at: 2026-01-07 17:42:35
+  svc_code: MyString
+  approved_at: 2026-01-07 20:25:51
+  deleted_at: 2026-01-07 20:25:51
 
 two:
   lead: two
   product: two
+  user: two
   status: MyString
-  approved_at: 2026-01-07 17:42:35
+  svc_code: MyString
+  approved_at: 2026-01-07 20:25:51
+  deleted_at: 2026-01-07 20:25:51
