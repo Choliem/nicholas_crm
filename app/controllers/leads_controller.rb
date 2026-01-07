@@ -1,29 +1,21 @@
 class LeadsController < ApplicationController
-  before_action :authorized
   before_action :set_lead, only: %i[ show edit update destroy ]
+  before_action :authorized
 
-  # GET /leads or /leads.json
   def index
-  @leads = Lead.all
-  @total_leads = Lead.count
-  @pending_projects = Project.where(status: 'Pending Approval').count
-  @total_revenue = Project.where(status: 'Approved').joins(:product).sum(:price)
-end
+    @leads = Lead.all
+  end
 
-  # GET /leads/1 or /leads/1.json
   def show
   end
 
-  # GET /leads/new
   def new
     @lead = Lead.new
   end
 
-  # GET /leads/1/edit
   def edit
   end
 
-  # POST /leads or /leads.json
   def create
     @lead = Lead.new(lead_params)
 
@@ -38,11 +30,10 @@ end
     end
   end
 
-  # PATCH/PUT /leads/1 or /leads/1.json
   def update
     respond_to do |format|
       if @lead.update(lead_params)
-        format.html { redirect_to @lead, notice: "Lead was successfully updated.", status: :see_other }
+        format.html { redirect_to @lead, notice: "Lead was successfully updated." }
         format.json { render :show, status: :ok, location: @lead }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,24 +42,20 @@ end
     end
   end
 
-  # DELETE /leads/1 or /leads/1.json
   def destroy
     @lead.soft_delete
-
     respond_to do |format|
-      format.html { redirect_to leads_path, notice: "Lead was successfully destroyed.", status: :see_other }
+      format.html { redirect_to leads_path, status: :see_other, notice: "Lead was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_lead
-      @lead = Lead.find(params.expect(:id))
+      @lead = Lead.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def lead_params
-      params.expect(lead: [ :name, :email, :phone, :address, :lat, :long, :status ])
+      params.require(:lead).permit(:name, :email, :phone, :status, :address, :lat, :long)
     end
 end
