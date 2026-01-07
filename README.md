@@ -100,11 +100,9 @@ This application is ready for Heroku deployment.
 
 | Role | Email | Password |
 | :--- | :--- | :--- |
-| **Admin** | `admin@smart.com` | `password` |
-| **Manager** | `manager@smart.com` | `password` |
-| **Sales** | `sales@smart.com` | `password` |
-| **Staff** | `staff@smart.com` | `password` |
-| **Member** | `aka@gmail.com` | `password` |
+| **Admin** | `admin@smart.com` | `password123` |
+| **Manager** | `manager@smart.com` | `password123` |
+| **Sales** | `sales@smart.com` | `password123` |
 
 ---
 
