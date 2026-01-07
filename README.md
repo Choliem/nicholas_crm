@@ -60,6 +60,29 @@ A web-based Customer Relationship Management (CRM) application for PT. Smart (IS
 
 ---
 
+## ☁️ Deployment (Cloud)
+
+This project uses **Render.com** for cloud deployment (Free Tier).
+
+### Steps to Deploy
+1.  **Register**: Sign up at [render.com](https://render.com).
+2.  **New Web Service**: Connect this GitHub repository.
+3.  **Configuration**:
+    *   **Name**: `nicholas-crm` (or unique name)
+    *   **Language**: **Ruby** (Not Docker)
+    *   **Build Command**: `./bin/render-build.sh`
+    *   **Start Command**: `bundle exec rails server`
+4.  **Environment Variables**:
+    *   `RAILS_MASTER_KEY`: (Copy content from your local `config/master.key` file)
+    *   `WEB_CONCURRENCY`: `2`
+5.  **Database**:
+    *   Render will prompt to add a PostgreSQL database. Select the **Free** plan.
+    *   It will automatically set the `DATABASE_URL`.
+
+Once deployed, copy the **onrender.com** URL and submit it.
+
+---
+
 ## 🔑 Default Credentials (Seed Data)
 
 | Role | Email | Password |
