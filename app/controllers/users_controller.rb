@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     
-    @user.role = "staff" # Force default role
+    @user.role = "user" # Default role for new registrations
     @user.role = "admin" if User.count == 0 # First user is admin
 
     if @user.save

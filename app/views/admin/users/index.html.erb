@@ -25,7 +25,7 @@
           </td>
           <td class="px-6 py-4">
             <%= form_with(model: user, url: admin_user_path(user), method: :patch, class: "flex items-center gap-2") do |f| %>
-              <%= f.select :role, [['Staff', 'staff'], ['Manager', 'manager'], ['Sales', 'sales'], ['Admin', 'admin']], {}, class: "text-xs border-slate-200 rounded-lg py-1 px-2 focus:ring-blue-500" %>
+              <%= f.select :role, [['Member', 'user'], ['Staff', 'staff'], ['Manager', 'manager'], ['Sales', 'sales'], ['Admin', 'admin']], {}, class: "text-xs border-slate-200 rounded-lg py-1 px-2 focus:ring-blue-500" %>
               <%= f.submit "Update", class: "bg-blue-600 text-white px-2 py-1 rounded text-xs font-bold hover:bg-blue-700 cursor-pointer" %>
             <% end %>
           </td>

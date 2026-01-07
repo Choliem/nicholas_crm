@@ -17,5 +17,13 @@ class ApplicationController < ActionController::Base
       session[:user_id] = nil
       redirect_to login_path, alert: "Akun Anda telah dibekukan: #{reason}"
     end
+
+    # Restrict 'user' role from accessing internal pages (except Products and static pages)
+    if logged_in? && current_user.role == 'user'
+      allowed_controllers = ['products', 'sessions', 'static_pages']
+      unless allowed_controllers.include?(controller_name)
+        redirect_to products_path, alert: "Anda hanya memiliki akses ke Katalog Layanan."
+      end
+    end
   end
 end
