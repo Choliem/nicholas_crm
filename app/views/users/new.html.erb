@@ -22,8 +22,8 @@
         </div>
 
         <div>
-          <%= f.label :role, "Posisi / Role", class: "block text-sm font-medium text-slate-700" %>
-          <%= f.select :role, [['Manager', 'manager'], ['Staff Marketing', 'marketing'], ['Admin', 'admin']], {}, class: "mt-1 block w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" %>
+          <%= f.label :email, "Email Address", class: "block text-sm font-medium text-slate-700" %>
+          <%= f.email_field :email, required: true, class: "mt-1 block w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" %>
         </div>
 
         <div>

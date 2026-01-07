@@ -1,8 +1,9 @@
 class LeadsController < ApplicationController
+  before_action :authorized
   before_action :set_lead, only: %i[ show edit update destroy ]
 
   # GET /leads or /leads.json
-def index
+  def index
   @leads = Lead.all
   @total_leads = Lead.count
   @pending_projects = Project.where(status: 'Pending Approval').count
@@ -52,7 +53,7 @@ end
 
   # DELETE /leads/1 or /leads/1.json
   def destroy
-    @lead.destroy!
+    @lead.soft_delete
 
     respond_to do |format|
       format.html { redirect_to leads_path, notice: "Lead was successfully destroyed.", status: :see_other }

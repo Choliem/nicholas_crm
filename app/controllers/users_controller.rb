@@ -8,7 +8,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     
-    @user.role = "staff" if @user.role.blank?
+    @user.role = "staff" # Force default role
+    @user.role = "admin" if User.count == 0 # First user is admin
 
     if @user.save
       session[:user_id] = @user.id 
@@ -23,6 +24,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :username, :email, :password, :password_confirmation, :role)
+    params.require(:user).permit(:name, :username, :email, :password, :password_confirmation)
   end
 end

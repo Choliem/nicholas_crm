@@ -15,5 +15,11 @@ class ApplicationController < ActionController::Base
   def authorized
     # Redirect ke login jika mencoba akses halaman internal tanpa login
     redirect_to login_path, alert: "Silakan login terlebih dahulu" unless logged_in?
+    
+    # Force Logout if banned
+    if logged_in? && current_user.banned?
+      session[:user_id] = nil
+      redirect_to login_path, alert: "Akun Anda telah dibekukan: #{current_user.ban_reason}"
+    end
   end
 end

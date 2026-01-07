@@ -29,12 +29,17 @@
           </div>
           
           <nav class="mt-8 px-4 flex-1 space-y-2">
-            <% [
-              ['Dashboard', root_path, '🏠'],
+            <% nav_items = [
+              ['Dashboard', dashboard_path, '🏠'],
               ['Leads (Prospek)', leads_path, '📈'],
               ['Projects', projects_path, '📁'],
+              ['Customers', customers_projects_path, '👥'],
               ['Master Produk', products_path, '📦']
-            ].each do |name, path, icon| %>
+            ]
+            
+            nav_items << ['Admin Users', admin_users_path, '🛡️'] if current_user&.role == 'admin'
+            
+            nav_items.each do |name, path, icon| %>
               <%= link_to path, class: "flex items-center gap-3 py-3 px-4 rounded-xl transition-all duration-300 #{current_page?(path) ? 'bg-blue-600 shadow-lg translate-x-1 ring-1 ring-blue-400' : 'hover:bg-blue-800/50 opacity-70 hover:opacity-100'}" do %>
                 <span class="text-lg"><%= icon %></span>
                 <span class="font-semibold text-sm"><%= name %></span>

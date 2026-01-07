@@ -1,0 +1,45 @@
+<div class="mb-6">
+  <h1 class="text-2xl font-bold text-slate-800">Daftar Pelanggan Aktif</h1>
+  <p class="text-slate-500">Customer yang sudah berlangganan layanan.</p>
+</div>
+
+<div class="overflow-x-auto">
+  <table class="min-w-full bg-white rounded-xl shadow-sm border border-slate-100">
+    <thead>
+      <tr class="bg-slate-50 text-slate-600 text-sm uppercase">
+        <th class="py-4 px-6 text-left">Customer Name</th>
+        <th class="py-4 px-6 text-left">Kontak</th>
+        <th class="py-4 px-6 text-left">Layanan Berlangganan</th>
+        <th class="py-4 px-6 text-right">Tanggal Bergabung</th>
+      </tr>
+    </thead>
+    <tbody class="text-slate-700 divide-y divide-slate-100">
+      <% @customer_projects.each do |project| %>
+        <tr class="hover:bg-slate-50 transition">
+          <td class="py-4 px-6">
+            <div class="font-bold text-slate-800"><%= project.lead.name %></div>
+            <div class="text-xs text-slate-400"><%= project.lead.address %></div>
+          </td>
+          <td class="py-4 px-6">
+            <div class="text-sm"><%= project.lead.email %></div>
+            <div class="text-xs text-slate-500"><%= project.lead.phone %></div>
+          </td>
+          <td class="py-4 px-6">
+            <span class="bg-blue-100 text-blue-700 py-1 px-3 rounded-full text-xs font-bold">
+              <%= project.product.name %>
+            </span>
+          </td>
+          <td class="py-4 px-6 text-right font-mono text-sm">
+            <%= project.approved_at&.strftime("%d %b %Y") %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <% if @customer_projects.empty? %>
+    <div class="text-center py-10 text-slate-400">
+      Belum ada customer yang berlangganan.
+    </div>
+  <% end %>
+</div>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "login", to: "sessions#new"
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
+  get "dashboard", to: "dashboard#index"
   
 get 'signup', to: 'users#new'
 post 'users', to: 'users#create'
@@ -13,5 +14,12 @@ post 'users', to: 'users#create'
   resources :products
   resources :projects do
     member { patch :approve }
+    collection { get :customers }
   end
+
+  namespace :admin do
+    resources :users, only: [:index, :update]
+  end
+
+  resources :sales_targets, only: [:new, :create]
 end

@@ -1,10 +1,59 @@
-<p style="color: green"><%= notice %></p>
+<div class="max-w-4xl mx-auto py-10">
+  <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100">
+    <!-- Header -->
+    <div class="h-32 bg-gradient-to-r from-blue-600 to-cyan-500 flex items-center px-8 relative">
+      <div class="absolute -bottom-10 left-8">
+        <div class="w-24 h-24 bg-white rounded-2xl p-2 shadow-lg">
+           <div class="w-full h-full bg-slate-100 rounded-xl flex items-center justify-center text-4xl">
+             👤
+           </div>
+        </div>
+      </div>
+    </div>
 
-<%= render @lead %>
+    <div class="pt-12 px-8 pb-8">
+      <div class="flex justify-between items-start mb-8">
+        <div>
+          <h1 class="text-3xl font-extrabold text-slate-900"><%= @lead.name %></h1>
+          <div class="flex items-center gap-3 mt-1">
+             <span class="text-blue-600 font-medium"><%= @lead.email %></span>
+             <span class="text-slate-300">•</span>
+             <span class="text-slate-500"><%= @lead.phone %></span>
+          </div>
+        </div>
+        
+        <div class="flex flex-col items-end">
+          <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-bold border border-blue-100 uppercase tracking-wide">
+            <%= @lead.status %>
+          </span>
+          <span class="text-xs text-slate-400 mt-2">Added <%= time_ago_in_words(@lead.created_at) %> ago</span>
+        </div>
+      </div>
 
-<div>
-  <%= link_to "Edit this lead", edit_lead_path(@lead) %> |
-  <%= link_to "Back to leads", leads_path %>
+      <div class="grid grid-cols-3 gap-6 mb-8">
+        <div class="col-span-2 bg-slate-50 p-6 rounded-2xl border border-slate-100">
+          <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">ADDRESS & LOCATION</h3>
+          <p class="text-slate-700 font-medium leading-relaxed"><%= @lead.address %></p>
+          <div class="mt-4 flex items-center gap-2 text-slate-500 text-sm">
+            <span>📍 Lat: <%= @lead.lat %></span>
+            <span>Long: <%= @lead.long %></span>
+          </div>
+        </div>
+        
+        <div class="border border-slate-100 rounded-2xl p-6 bg-white flex flex-col justify-center items-center text-center">
+           <div class="text-3xl font-bold text-slate-900 mb-1"><%= @lead.projects.count %></div>
+           <div class="text-xs text-slate-400 font-bold uppercase">Active Projects</div>
+        </div>
+      </div>
 
-  <%= button_to "Destroy this lead", @lead, method: :delete %>
+      <div class="flex gap-3 border-t pt-6">
+        <%= link_to "Edit Profil", edit_lead_path(@lead), class: "flex-1 bg-white border-2 border-slate-200 text-slate-700 text-center py-3 rounded-xl font-bold hover:border-blue-500 hover:text-blue-600 transition" %>
+        <%= link_to "Kembali ke Leads", leads_path, class: "flex-1 bg-slate-100 text-slate-700 text-center py-3 rounded-xl font-bold hover:bg-slate-200 transition" %>
+      </div>
+      
+       <div class="mt-6 text-center">
+        <%= button_to "Hapus Data Lead", @lead, method: :delete, class: "text-red-400 text-xs font-bold hover:text-red-600", data: { turbo_confirm: "Yakin hapus lead ini?" } %>
+      </div>
+    </div>
+  </div>
 </div>

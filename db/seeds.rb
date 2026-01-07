@@ -5,8 +5,9 @@ Product.destroy_all
 User.destroy_all
 
 # 1. Create Users
-manager = User.create!(name: "Manager Budi", email: "manager@smart.com", password: "password123", role: "manager", phone: "0811111111")
-sales = User.create!(name: "Sales Andi", email: "sales@smart.com", password: "password123", role: "sales", phone: "0822222222")
+admin = User.create!(name: "Super Admin", email: "admin@smart.com", username: "admin", password: "password123", role: "admin", phone: "0800000000", verified_at: Time.now)
+manager = User.create!(name: "Manager Budi", email: "manager@smart.com", username: "manager", password: "password123", role: "manager", phone: "0811111111", verified_at: Time.now)
+sales = User.create!(name: "Sales Andi", email: "sales@smart.com", username: "sales", password: "password123", role: "sales", phone: "0822222222", verified_at: Time.now)
 
 # 2. Create Products
 p1 = Product.create!(name: "Smart Home 50Mbps", description: "Internet rumah stabil", price: 350000)

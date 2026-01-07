@@ -2,7 +2,7 @@
   <div class="max-w-md w-full bg-white rounded-2xl shadow-2xl p-10 border-t-8 border-[#0A2463]">
     <div class="mb-10 text-center">
       <h2 class="text-3xl font-bold text-slate-800">Login CRM</h2>
-      <p class="text-slate-400 mt-2 text-sm text-bold uppercase tracking-widest">PT. SMART Internal System</p>
+      <p class="text-slate-400 mt-2 text-sm text-bold uppercase tracking-widest">PT. SMART</p>
     </div>
 
     <%= form_with url: login_path, local: true, class: "space-y-6" do |f| %>
@@ -19,7 +19,9 @@
 
     <div class="mt-8 flex flex-col items-center space-y-4">
       <%= link_to "Belum punya akun? Daftar", signup_path, class: "text-blue-600 font-semibold hover:underline" %>
-      <%= link_to "← Kembali ke Beranda", root_path, class: "text-slate-400 text-sm hover:text-slate-600 transition" %>
+      <%= link_to root_path, class: "flex items-center gap-2 text-slate-500 hover:text-[#0A2463] transition-colors py-2 px-4 rounded-lg hover:bg-slate-50 font-medium text-sm" do %>
+        <span>←</span> Kembali ke Beranda
+      <% end %>
     </div>
   </div>
 </div>

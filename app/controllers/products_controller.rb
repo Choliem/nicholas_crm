@@ -36,7 +36,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product.destroy
+    @product.soft_delete
     redirect_to products_path, notice: "Layanan telah dihapus dari katalog."
   end
 
