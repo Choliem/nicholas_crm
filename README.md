@@ -57,42 +57,6 @@ A web-based Customer Relationship Management (CRM) application for PT. Smart (IS
     ```
     Access the app at `http://localhost:3000`
 
----
-
-## ☁️ Deployment (Heroku)
-
-This application is ready for Heroku deployment.
-
-1.  **Login to Heroku CLI**
-    ```bash
-    heroku login
-    ```
-
-2.  **Create App**
-    ```bash
-    heroku create nicholas-crm-demo
-    ```
-
-3.  **Add PostgreSQL Addon**
-    ```bash
-    heroku addons:create heroku-postgresql:hobby-dev
-    ```
-
-4.  **Deploy Code**
-    ```bash
-    git push heroku main
-    ```
-
-5.  **Run Migrations & Seed**
-    ```bash
-    heroku run rails db:migrate
-    heroku run rails db:seed
-    ```
-
-6.  **Open App**
-    ```bash
-    heroku open
-    ```
 
 ---
 
