@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  # Baris di bawah ini yang mengubah 'password' menjadi 'password_digest' secara otomatis
   has_secure_password
   
   default_scope { where(deleted_at: nil) }

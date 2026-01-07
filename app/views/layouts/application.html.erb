@@ -7,6 +7,7 @@
     <%= csp_meta_tag %>
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     
@@ -19,16 +20,25 @@
   <body class="bg-slate-50 text-slate-900 min-h-screen">
 
     <% if logged_in? %>
-      <div class="flex">
-        <aside class="w-64 bg-[#0A2463] text-white flex-shrink-0 fixed h-full shadow-2xl z-50 flex flex-col">
-          <div class="p-6 border-b border-blue-800/50">
+      <div class="flex" x-data="{ sidebarOpen: false }">
+        <!-- Mobile Header -->
+        <div class="fixed w-full z-40 bg-[#0A2463] text-white p-4 flex justify-between items-center md:hidden shadow-md">
+          <h1 class="text-lg font-bold">PT. SMART CRM</h1>
+          <button @click="sidebarOpen = !sidebarOpen" class="p-2 rounded hover:bg-blue-800 transition">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+        </div>
+
+        <!-- Sidebar -->
+        <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" class="transform transition-transform duration-300 md:translate-x-0 w-64 bg-[#0A2463] text-white flex-shrink-0 fixed h-full shadow-2xl z-50 flex flex-col pt-16 md:pt-0">
+          <div class="p-6 border-b border-blue-800/50 hidden md:block">
             <h1 class="text-xl font-bold tracking-tighter flex items-center gap-2">
               <span class="bg-red-500 w-3 h-3 rounded-full animate-pulse"></span>
               PT. SMART <span class="text-blue-400 font-light">CRM</span>
             </h1>
           </div>
           
-          <nav class="mt-8 px-4 flex-1 space-y-2">
+          <nav class="mt-4 md:mt-8 px-4 flex-1 space-y-2 overflow-y-auto">
             <% nav_items = [
               ['Dashboard', dashboard_path, '🏠'],
               ['Leads (Prospek)', leads_path, '📈'],
@@ -51,6 +61,7 @@
             <div class="px-4 mb-4">
               <span class="text-[10px] text-blue-400 uppercase font-black tracking-widest">Logged in as:</span>
               <p class="text-sm font-bold truncate"><%= current_user.name rescue 'User' %></p>
+              <p class="text-sm text-blue-300 truncate"><%= current_user.email rescue '' %></p>
               <p class="text-[10px] bg-blue-700 inline-block px-2 py-0.5 rounded mt-1 text-white uppercase"><%= current_user.role rescue 'Staff' %></p>
             </div>
             <%= button_to logout_path, method: :delete, 
@@ -61,7 +72,10 @@
           </div>
         </aside>
 
-        <main class="flex-1 ml-64 p-10">
+        <!-- Overlay -->
+        <div x-show="sidebarOpen" @click="sidebarOpen = false" class="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden" style="display: none;"></div>
+
+        <main class="flex-1 ml-0 md:ml-64 p-4 md:p-10 pt-20 md:pt-10 transition-all duration-300">
           <% flash.each do |type, msg| %>
             <div class="max-w-4xl mx-auto mb-6 p-4 rounded-xl border flex items-center gap-3 shadow-sm animate-in fade-in slide-in-from-top-4 duration-500 
               <%= type == 'notice' ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-rose-50 border-rose-200 text-rose-800' %>">
