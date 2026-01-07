@@ -4,6 +4,9 @@ class LeadsController < ApplicationController
 
   def index
     @leads = Lead.all
+    @total_leads = Lead.count
+    @pending_projects = Project.where(status: 'Pending').count
+    @total_revenue = Project.where(status: 'Approved').joins(:product).sum('products.price')
   end
 
   def show
