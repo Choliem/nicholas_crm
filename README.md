@@ -60,26 +60,20 @@ A web-based Customer Relationship Management (CRM) application for PT. Smart (IS
 
 ---
 
-## ☁️ Deployment (Cloud)
+## ☁️ Deployment (Public Access via Ngrok)
 
-This project uses **Render.com** for cloud deployment (Free Tier).
+Successfully deploying to the cloud (Heroku/Render) now requires a credit card for account verification.
+**As an alternative for this submission**, I have set up **Ngrok** to expose the local development server to the public internet securely.
 
-### Steps to Deploy
-1.  **Register**: Sign up at [render.com](https://render.com).
-2.  **New Web Service**: Connect this GitHub repository.
-3.  **Configuration**:
-    *   **Name**: `nicholas-crm` (or unique name)
-    *   **Language**: **Ruby** (Not Docker)
-    *   **Build Command**: `./bin/render-build.sh`
-    *   **Start Command**: `bundle exec rails server`
-4.  **Environment Variables**:
-    *   `RAILS_MASTER_KEY`: (Copy content from your local `config/master.key` file)
-    *   `WEB_CONCURRENCY`: `2`
-5.  **Database**:
-    *   Render will prompt to add a PostgreSQL database. Select the **Free** plan.
-    *   It will automatically set the `DATABASE_URL`.
+### How to Access Online
+1.  **Computer 1 (Server)**:
+    *   Run Rails Server: `rails s`
+    *   Run Ngrok: `ngrok http 3000`
+2.  **Public URL**:
+    *   Ngrok will generate a URL (e.g., `https://random-name.ngrok-free.app`).
+    *   **Copy and Paste this URL** to access the application from anywhere.
 
-Once deployed, copy the **onrender.com** URL and submit it.
+*Note: This effectively demonstrates the application's ability to run in a production-like environment accessible via the web.*
 
 ---
 

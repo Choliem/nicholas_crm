@@ -47,10 +47,10 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 end
 
-group :production do
-  # Gunakan PostgreSQL hanya untuk Cloud (Render/Heroku)
-  gem "pg", "~> 1.1"
-end
+# group :production do
+#   # Gunakan PostgreSQL hanya untuk Cloud (Render/Heroku)
+#   gem "pg", "~> 1.1"
+# end
 
 group :development, :test do
   # # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
