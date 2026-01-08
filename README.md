@@ -6,13 +6,6 @@ A modern, web-based Customer Relationship Management (CRM) application for PT. S
 
 ---
 
-## 📅 Project Timeline
-- **Start Date**: 2026-01-07 10:00 (Local Time)
-- **Finish Date**: 2026-01-08 14:30 (Local Time)
-- **Total Duration**: ~28 Hours of focused development.
-
----
-
 ## 🛠️ Methodology & Tools
 - **Framework**: Ruby on Rails 8.1 (Latest)
 - **Database**: PostgreSQL v14 compliant (Primary), SQLite (used for local submission demo)
