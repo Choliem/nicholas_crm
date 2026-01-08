@@ -6,7 +6,7 @@ A modern, web-based Customer Relationship Management (CRM) application for PT. S
 
 ---
 
-## 🛠️ Methodology & Tools
+## Methodology & Tools
 - **Framework**: Ruby on Rails 8.1 (Latest)
 - **Database**: PostgreSQL v14 compliant (Primary), SQLite (used for local submission demo)
 - **Design**: Tailwind CSS for modern aesthetics.
@@ -17,7 +17,7 @@ A modern, web-based Customer Relationship Management (CRM) application for PT. S
 
 ---
 
-## 📚 Data Dictionary (Schema Description)
+## Data Dictionary (Schema Description)
 
 ### 1. `users`
 | Column | Type | Description |
@@ -85,7 +85,7 @@ Access at: `http://localhost:3000`
 
 ---
 
-## ☁️ Deployment (Online Access)
+## Deployment (Online Access)
 Due to cloud platform credit card requirements, this app is deployed via **Localtunnel**.
 1.  Verify the server is running (`rails s`).
 2.  Tunnel URL: Use the `.loca.lt` link provided in the submission.
@@ -93,7 +93,7 @@ Due to cloud platform credit card requirements, this app is deployed via **Local
 
 ---
 
-## 🔑 Default Credentials
+## Default Credentials
 | Role | Email | Password |
 | :--- | :--- | :--- |
 | **Admin** | `admin@smart.com` | `password123` |
