@@ -20,9 +20,10 @@
       <div class="flex flex-col sm:flex-row justify-center items-center gap-4 pt-6">
         <%= link_to login_path, class: "group relative px-10 py-5 bg-blue-600 text-white rounded-2xl shadow-2xl hover:bg-blue-700 font-bold transition-all duration-300 hover:scale-105" do %>
           <span>Mulai Sekarang</span>
-          <span class="inline-block transition-transform group-hover:translate-x-1 ml-2">→</span>
         <% end %>
-        <%= link_to signup_path, class: "px-10 py-5 border-2 border-slate-200 rounded-2xl text-slate-700 hover:border-blue-200 hover:bg-blue-50 transition-all font-bold" %>
+        <%= link_to signup_path, class: "px-10 py-5 border-2 border-slate-200 rounded-2xl text-slate-700 hover:border-blue-200 hover:bg-blue-50 transition-all font-bold" do %>
+          <span>Daftar Sekarang</span>
+        <% end %>
       </div>
     </div>
   </header>
@@ -77,7 +78,7 @@
   <!-- Footer -->
   <footer class="py-12 bg-white text-center border-t border-slate-100">
     <p class="text-slate-400 text-sm font-medium tracking-wide">
-      &copy; 2026 PT. SMART CRM. All Rights Reserved. Prepared for D-Net Technical Test.
+      &copy; 2026 PT. SMART CRM. All Rights Reserved.
     </p>
   </footer>
 </div>
