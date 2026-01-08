@@ -1,84 +1,106 @@
-# Nicholas CRM - PT. Smart
+# Nicholas CRM - PT. Smart (ISP)
 
-A web-based Customer Relationship Management (CRM) application for PT. Smart (ISP), designed to digitize sales operations, manage leads, products, and customer subscriptions.
+> "The path ahead may be uncertain, but with a steady step and an open mind, can navigate the unknown and discover new possibilities"
 
-**Author**: Nicholas Liemotto  
-**Tech Stack**: Ruby on Rails 7, PostgreSQL, Tailwind CSS
-
----
-
-## 🚀 Features
-
-*   **Role-Based Access Control (RBAC)**:
-    *   **Member**: Can only view the Public Product Catalog.
-    *   **Staff**: Can manage Leads and Projects.
-    *   **Manager**: Can approve projects, manage products, and set sales targets.
-    *   **Admin**: Full access including User Management (Ban/Unban/Role Change).
-*   **Lead Management**: Track potential customers with location data (Lat/Long) and status.
-*   **Project Workflow**: Process leads into projects with Manager approval system.
-*   **Product Catalog**: Modern pricing table for internet packages.
-*   **Dashboard**: Real-time sales monitoring with monthly targets and charts.
-*   **Soft Delete**: Data safety with `deleted_at` implementation.
-*   **Responsive UI**: Optimized for Mobile and Desktop with Tailwind CSS.
+A modern, web-based Customer Relationship Management (CRM) application for PT. Smart (Internet Service Provider), designed to digitize sales operations and eliminate paper-based re-capitulation.
 
 ---
 
-## 🛠️ Installation & Setup (Local)
-
-### Prerequisites
-*   Ruby 3.x
-*   PostgreSQL 14+
-*   Node.js & Yarn (for CSS bundling if needed)
-
-### Steps
-1.  **Clone the Repository**
-    ```bash
-    git clone https://github.com/your-username/nicholas_crm.git
-    cd nicholas_crm
-    ```
-
-2.  **Install Dependencies**
-    ```bash
-    bundle install
-    ```
-
-3.  **Setup Database**
-    ```bash
-    # Update config/database.yml with your postgres credentials if needed
-    rails db:create
-    rails db:migrate
-    rails db:seed
-    ```
-    *Note: `rails db:seed` will create a default Admin, Manager, Sales, Staff, and User for testing.*
-
-4.  **Run the Server**
-    ```bash
-    rails server
-    ```
-    Access the app at `http://localhost:3000`
-
+## 📅 Project Timeline
+- **Start Date**: 2026-01-07 10:00 (Local Time)
+- **Finish Date**: 2026-01-08 14:30 (Local Time)
+- **Total Duration**: ~28 Hours of focused development.
 
 ---
 
-## ☁️ Deployment (Public Access via Localtunnel)
-
-Successfully deploying to the cloud (Heroku/Render) now requires a credit card.
-**As an alternative for this submission**, I have set up **Localtunnel** to expose the local development server to the public internet.
-
-### How to Access Online
-1.  **Server**: Run `rails s` in one terminal.
-2.  **Tunnel**: Run `lt --port 3000` in a second terminal.
-3.  **Public URL**:
-    *   Localtunnel will generate a URL (e.g., `https://floppy-cat-55.loca.lt`).
-    *   **Copy this URL** to access the application.
-    *   **Password**: If asked for a "Tunnel Password", enter the Public IP of the server computer. You can find it by visiting [https://loca.lt/mytunnelpassword](https://loca.lt/mytunnelpassword) on the server.
-
-
+## 🛠️ Methodology & Tools
+- **Framework**: Ruby on Rails 8.1 (Latest)
+- **Database**: PostgreSQL v14 compliant (Primary), SQLite (used for local submission demo)
+- **Design**: Tailwind CSS for modern aesthetics.
+- **Tools**: 
+  - **DBeaver**: Used for schema visualization and relational integrity checks.
+  - **Draw.io**: Used for planning the internal project approval flow.
+  - **Localtunnel**: Used for public cloud accessibility without credit card barriers.
 
 ---
 
-## 🔑 Default Credentials (Seed Data)
+## 📚 Data Dictionary (Schema Description)
 
+### 1. `users`
+| Column | Type | Description |
+| :--- | :--- | :--- |
+| `id` | BigInt | Primary Key |
+| `name` | String | Full Name of user |
+| `username` | String | Unique username for login |
+| `email` | String | Unique email for login |
+| `password_digest` | String | Encrypted password (BCrypt) |
+| `role` | String | `admin`, `manager`, `sales`, `user` |
+| `banned` | Boolean | Account status |
+
+### 2. `leads`
+| Column | Type | Description |
+| :--- | :--- | :--- |
+| `id` | BigInt | Primary Key |
+| `name` | String | Prospect Name |
+| `status` | String | `New`, `Contacted`, `Qualified`, `Closed` |
+| `lat`, `long` | Decimal | Geo-coordinates for site survey |
+| `deleted_at` | DateTime | Soft-delete timestamp |
+
+### 3. `products`
+| Column | Type | Description |
+| :--- | :--- | :--- |
+| `id` | BigInt | Primary Key |
+| `name` | String | Internet package name (e.g., Smart Home 50Mbps) |
+| `price` | Decimal | Monthly subscription fee |
+
+### 4. `projects`
+| Column | Type | Description |
+| :--- | :--- | :--- |
+| `id` | BigInt | Primary Key |
+| `lead_id` | FK | Associated Lead |
+| `product_id` | FK | Associated Product |
+| `user_id` | FK | Assigned Sales Staff |
+| `status` | String | `Pending Approval`, `Approved` |
+| `svc_code` | String | Unique Service Identifier generated post-approval |
+
+---
+
+## � Installation & Local Setup
+
+### 1. Prerequisites
+- Ruby 3.2+
+- Node.js & Yarn
+- PostgreSQL 14 (Optional, can run on SQLite for quick review)
+
+### 2. Setup
+```bash
+# Clone
+git clone https://github.com/Choliem/nicholas_crm.git
+cd nicholas_crm
+
+# Install
+bundle install
+
+# Prepare DB
+rails db:migrate
+rails db:seed
+
+# Run
+rails s
+```
+Access at: `http://localhost:3000`
+
+---
+
+## ☁️ Deployment (Online Access)
+Due to cloud platform credit card requirements, this app is deployed via **Localtunnel**.
+1.  Verify the server is running (`rails s`).
+2.  Tunnel URL: Use the `.loca.lt` link provided in the submission.
+3.  **Tunnel Password**: If asked, visit [https://loca.lt/mytunnelpassword](https://loca.lt/mytunnelpassword) on the server machine to get your Public IP.
+
+---
+
+## 🔑 Default Credentials
 | Role | Email | Password |
 | :--- | :--- | :--- |
 | **Admin** | `admin@smart.com` | `password123` |
@@ -87,8 +109,7 @@ Successfully deploying to the cloud (Heroku/Render) now requires a credit card.
 
 ---
 
-## 📝 Design Decisions & Improvisations
-
-*   **Public vs Private**: I separated the public view (Catalog only) from the internal CRM to ensure data security.
-*   **Dynamic Targets**: Monthly sales targets can be set dynamically by Managers instead of being hardcoded.
-*   **UI/UX**: Used Tailwind CSS component classes for a modern, distinct look between "Public" and "Internal" areas.
+## 📝 Design Decisions
+1.  **RBAC Logic**: `Manager` approval is strictly required before a `Lead` becomes an active `Project` with a `Service Code`.
+2.  **Soft Deletion**: Implemented to allow recovery of accidentally deleted leads, common in CRM operations.
+3.  **Modern Hero UI**: The landing page uses a high-contrast dark theme for the required quote and a professional ISP hero section.

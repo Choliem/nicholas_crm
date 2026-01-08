@@ -51,8 +51,11 @@ class ProjectsController < ApplicationController
   end
 
   def customers
-    # List leads/customers that have approved projects
-    @customer_projects = Project.where(status: 'Approved').includes(:lead, :product)
+    # Group approved projects by lead to list their services
+    @customers = Lead.joins(:projects)
+                     .where(projects: { status: 'Approved' })
+                     .distinct
+                     .includes(projects: :product)
   end
 
   private
