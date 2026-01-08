@@ -78,4 +78,5 @@ Rails.application.configure do
 
   config.hosts << "localhost"
   config.hosts << /.*\.ngrok-free\.app/
+  config.hosts << /.*\.loca\.lt/
 end

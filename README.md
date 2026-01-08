@@ -60,20 +60,20 @@ A web-based Customer Relationship Management (CRM) application for PT. Smart (IS
 
 ---
 
-## ☁️ Deployment (Public Access via Ngrok)
+## ☁️ Deployment (Public Access via Localtunnel)
 
-Successfully deploying to the cloud (Heroku/Render) now requires a credit card for account verification.
-**As an alternative for this submission**, I have set up **Ngrok** to expose the local development server to the public internet securely.
+Successfully deploying to the cloud (Heroku/Render) now requires a credit card.
+**As an alternative for this submission**, I have set up **Localtunnel** to expose the local development server to the public internet.
 
 ### How to Access Online
-1.  **Computer 1 (Server)**:
-    *   Run Rails Server: `rails s`
-    *   Run Ngrok: `ngrok http 3000`
-2.  **Public URL**:
-    *   Ngrok will generate a URL (e.g., `https://random-name.ngrok-free.app`).
-    *   **Copy and Paste this URL** to access the application from anywhere.
+1.  **Server**: Run `rails s` in one terminal.
+2.  **Tunnel**: Run `lt --port 3000` in a second terminal.
+3.  **Public URL**:
+    *   Localtunnel will generate a URL (e.g., `https://floppy-cat-55.loca.lt`).
+    *   **Copy this URL** to access the application.
+    *   **Password**: If asked for a "Tunnel Password", enter the Public IP of the server computer. You can find it by visiting [https://loca.lt/mytunnelpassword](https://loca.lt/mytunnelpassword) on the server.
 
-*Note: This effectively demonstrates the application's ability to run in a production-like environment accessible via the web.*
+
 
 ---
 
