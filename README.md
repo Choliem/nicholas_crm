@@ -58,7 +58,7 @@ A modern, web-based Customer Relationship Management (CRM) application for PT. S
 
 ---
 
-## � Installation & Local Setup
+## Installation & Local Setup
 
 ### 1. Prerequisites
 - Ruby 3.2+
@@ -102,7 +102,7 @@ Due to cloud platform credit card requirements, this app is deployed via **Local
 
 ---
 
-## 📝 Design Decisions
+## Design Decisions
 1.  **RBAC Logic**: `Manager` approval is strictly required before a `Lead` becomes an active `Project` with a `Service Code`.
 2.  **Soft Deletion**: Implemented to allow recovery of accidentally deleted leads, common in CRM operations.
 3.  **Modern Hero UI**: The landing page uses a high-contrast dark theme for the required quote and a professional ISP hero section.
